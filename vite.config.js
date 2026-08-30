@@ -3,6 +3,7 @@ import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
+  base: '/commemorate-us/',
   plugins: [vue()],
   resolve: {
     alias: {
