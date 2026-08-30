@@ -33,6 +33,12 @@
       </van-cell-group>
     </div>
 
+    <div class="section">
+      <van-cell-group inset>
+        <van-cell title="退出登录" is-link @click="onLogout" center />
+      </van-cell-group>
+    </div>
+
     <div class="footer">
       <p>LoveDays v1.0</p>
       <p>用心记录每一天 ❤</p>
@@ -42,9 +48,13 @@
 
 <script setup>
 import { useDateStore } from '@/stores/dateStore'
+import { useAuthStore } from '@/stores/authStore'
+import { useRouter } from 'vue-router'
 import { showConfirmDialog, showToast } from 'vant'
 
 const store = useDateStore()
+const authStore = useAuthStore()
+const router = useRouter()
 const themes = [
   { key: 'pink', label: '粉色', color: '#ff6b9d' },
   { key: 'purple', label: '紫色', color: '#a855f7' },
@@ -61,6 +71,14 @@ async function onClear() {
     await showConfirmDialog({ title: '确认清除所有数据？', message: '此操作不可恢复' })
     localStorage.removeItem('lovedays_data')
     location.reload()
+  } catch {}
+}
+
+async function onLogout() {
+  try {
+    await showConfirmDialog({ title: '确认退出登录？' })
+    authStore.logout()
+    router.push('/login')
   } catch {}
 }
 </script>
