@@ -7,12 +7,12 @@
     <div class="header">
       <div class="couple-display">
         <div class="avatar-wrap">
-          <div class="avatar pulse">♀</div>
+          <div class="avatar pulse"><img src="/avatars/female.svg" alt="avatar" /></div>
           <span class="name">{{ store.couple.nickname2 }}</span>
         </div>
         <div class="heart-icon">♥</div>
         <div class="avatar-wrap">
-          <div class="avatar pulse">♂</div>
+          <div class="avatar pulse"><img src="/avatars/male.svg" alt="avatar" /></div>
           <span class="name">{{ store.couple.nickname1 }}</span>
         </div>
       </div>
@@ -124,6 +124,12 @@ function heartStyle(i) {
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .avatar.pulse {
   animation: pulse 2s ease-in-out infinite;
