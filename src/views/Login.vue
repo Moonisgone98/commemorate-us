@@ -6,7 +6,7 @@
     <div class="login-container">
       <div class="logo">
         <div class="logo-icon">♥</div>
-        <h1>纪念日</h1>
+        <h1>LoveDays</h1>
       </div>
       <van-form @submit="onSubmit" class="login-form">
         <van-cell-group inset>
