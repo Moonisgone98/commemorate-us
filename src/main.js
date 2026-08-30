@@ -8,7 +8,7 @@ import './style.css'
 import {
   Tabbar, TabbarItem, NavBar, Cell, CellGroup, Field,
   Button, Empty, Icon, Popup, DatePicker,
-  Dialog, Toast
+  Dialog, Toast, Form
 } from 'vant'
 
 const app = createApp(App)
@@ -28,5 +28,6 @@ app.use(Popup)
 app.use(DatePicker)
 app.use(Dialog)
 app.use(Toast)
+app.use(Form)
 
 app.mount('#app')

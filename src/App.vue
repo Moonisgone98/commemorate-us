@@ -2,7 +2,7 @@
   <div class="app" :class="store.settings.theme">
     <router-view />
   </div>
-  <van-tabbar v-model="active" route fixed placeholder>
+  <van-tabbar v-if="showTabbar" v-model="active" route fixed placeholder>
     <van-tabbar-item icon="like" to="/">纪念日</van-tabbar-item>
     <van-tabbar-item icon="birthday-cake-o" to="/birthday">生日</van-tabbar-item>
     <van-tabbar-item icon="user-o" to="/profile">我的</van-tabbar-item>
@@ -10,11 +10,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useRoute } from 'vue-router'
 import { useDateStore } from '@/stores/dateStore'
 
 const store = useDateStore()
+const route = useRoute()
 const active = ref(0)
+const showTabbar = computed(() => !route.meta.hideTabbar)
 </script>
 
 <style>
