@@ -1,5 +1,8 @@
 <template>
   <div class="birthday-page">
+    <div class="hearts-bg">
+      <span v-for="i in 24" :key="i" class="heart-float" :style="heartStyle(i)">{{ heartEmoji(i) }}</span>
+    </div>
 
     <div class="list" v-if="store.birthdays.length">
       <div v-for="b in sortedList" :key="b.id" class="birthday-card">
@@ -59,6 +62,23 @@ async function onDelete(id) {
     store.removeBirthday(id)
   } catch {}
 }
+
+const heartEmojis = ['🎂', '🎁', '🎈', '🎉', '💕', '💗', '💖', '✨']
+function heartStyle(i) {
+  const left = Math.random() * 100
+  const delay = Math.random() * 8
+  const duration = 6 + Math.random() * 6
+  const size = 12 + Math.random() * 14
+  return {
+    left: `${left}%`,
+    animationDelay: `${delay}s`,
+    animationDuration: `${duration}s`,
+    fontSize: `${size}px`
+  }
+}
+function heartEmoji(i) {
+  return heartEmojis[i % heartEmojis.length]
+}
 </script>
 
 <style scoped>
@@ -66,9 +86,34 @@ async function onDelete(id) {
   min-height: 100vh;
   padding-bottom: 80px;
   color: #333;
+  position: relative;
+  overflow: hidden;
+}
+.hearts-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.heart-float {
+  position: absolute;
+  top: -30px;
+  opacity: 0.15;
+  animation: floatDown linear infinite;
+}
+@keyframes floatDown {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.15; }
+  50% { opacity: 0.25; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
 }
 .list {
   padding: 12px 16px;
+  position: relative;
+  z-index: 1;
 }
 .birthday-card {
   display: flex;

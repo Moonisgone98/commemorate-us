@@ -1,5 +1,8 @@
 <template>
   <div class="profile-page">
+    <div class="hearts-bg">
+      <span v-for="i in 24" :key="i" class="heart-float" :style="heartStyle(i)">{{ heartEmoji(i) }}</span>
+    </div>
     <van-nav-bar title="个人中心" style="--van-nav-bar-title-color: #333;" />
 
     <div class="section">
@@ -81,6 +84,23 @@ async function onLogout() {
     router.push('/login')
   } catch {}
 }
+
+const heartEmojis = ['💕', '💗', '💖', '✨', '💘', '💝', '❤', '♥']
+function heartStyle(i) {
+  const left = Math.random() * 100
+  const delay = Math.random() * 8
+  const duration = 6 + Math.random() * 6
+  const size = 12 + Math.random() * 14
+  return {
+    left: `${left}%`,
+    animationDelay: `${delay}s`,
+    animationDuration: `${duration}s`,
+    fontSize: `${size}px`
+  }
+}
+function heartEmoji(i) {
+  return heartEmojis[i % heartEmojis.length]
+}
 </script>
 
 <style>
@@ -91,9 +111,34 @@ async function onLogout() {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  position: relative;
+  overflow: hidden;
+}
+.hearts-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.heart-float {
+  position: absolute;
+  top: -30px;
+  opacity: 0.15;
+  animation: floatDown linear infinite;
+}
+@keyframes floatDown {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.15; }
+  50% { opacity: 0.25; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
 }
 .section {
   margin-top: 16px;
+  position: relative;
+  z-index: 1;
 }
 .section h4 {
   padding: 0 20px;

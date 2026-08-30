@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="hearts-bg">
-      <span v-for="i in 12" :key="i" class="heart-float" :style="heartStyle(i)">♥</span>
+      <span v-for="i in 24" :key="i" class="heart-float" :style="heartStyle(i)">{{ heartEmoji(i) }}</span>
     </div>
 
     <div class="header">
@@ -64,6 +64,11 @@ function heartStyle(i) {
     animationDuration: `${duration}s`,
     fontSize: `${size}px`
   }
+}
+
+const heartEmojis = ['♥', '❤', '💕', '💗', '💖', '✨', '💘', '💝']
+function heartEmoji(i) {
+  return heartEmojis[i % heartEmojis.length]
 }
 </script>
 
