@@ -43,12 +43,13 @@ import DayCard from '@/components/DayCard.vue'
 const store = useDateStore()
 
 const hasAny = computed(() =>
-  store.anniversaries.meet || store.anniversaries.love || store.anniversaries.marry
+  store.anniversaries.meet || store.anniversaries.love || store.anniversaries.getCert || store.anniversaries.marry
 )
 
 const cards = computed(() => [
   { key: 'meet', title: '相识', icon: '🤝', date: store.anniversaries.meet, show: !!store.anniversaries.meet },
   { key: 'love', title: '相恋', icon: '💕', date: store.anniversaries.love, show: !!store.anniversaries.love },
+  { key: 'getCert', title: '领证', icon: '📕', date: store.anniversaries.getCert, show: !!store.anniversaries.getCert },
   { key: 'marry', title: '结婚', icon: '💍', date: store.anniversaries.marry, show: !!store.anniversaries.marry }
 ])
 

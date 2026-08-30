@@ -20,7 +20,7 @@ function save(data) {
 
 const defaults = {
   couple: { nickname1: '沈云飞', nickname2: '马嘉爽' },
-  anniversaries: { meet: '2023-03-01', love: '2023-05-21', marry: '2026-06-11' },
+  anniversaries: { meet: '2023-03-01', love: '2023-05-21', getCert: '2026-05-20', marry: '2026-06-11' },
   birthdays: [
     { id: 1, name: '沈云飞', date: '1998-07-20' },
     { id: 2, name: '马嘉爽', date: '1998-03-14' }
